@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer componemts {
+  .container {
+    @apply max-w-7xl mx-auto px-5;
+  }
+
+  @screen lg {
+    .container {
+      @apply px-0
+    }
+  }
+}
