@@ -1,5 +1,9 @@
 <div class="container mt-10">
-  <div
+  <form
+    action=""
+    method="POST"
+    (ngSubmit)="saveFormData(formData)"
+    #formData="ngForm"
     class="flex flex-col px-8 pt-6 pb-8 my-2 mb-4 bg-white rounded shadow-md"
   >
     <div class="mb-6 -mx-3 md:flex">
@@ -11,10 +15,13 @@
           First Name
         </label>
         <input
-          class="block w-full px-4 py-3 mb-3 border rounded appearance-none bg-grey-lighter text-grey-darker border-red"
+          class="block w-full px-4 py-3 mb-3 transition-all duration-300 border rounded outline-none appearance-none ring ring-transparent focus:ring-offset-1 focus:ring-blue-300 : bg-grey-lighter text-grey-darker border-red"
           id="grid-first-name"
           type="text"
+          name="firstName"
           placeholder="Jane"
+          [(ngModel)]="userForm.firstName"
+          required
         />
         <p class="text-xs italic text-red">Please fill out this field.</p>
       </div>
@@ -26,10 +33,34 @@
           Last Name
         </label>
         <input
-          class="block w-full px-4 py-3 border rounded appearance-none bg-grey-lighter text-grey-darker border-grey-lighter"
+          class="block w-full px-4 py-3 transition-all duration-300 border rounded outline-none appearance-none ring ring-transparent focus:ring-offset-1 focus:ring-blue-300 : bg-grey-lighter text-grey-darker border-grey-lighter"
           id="grid-last-name"
+          name="lastName"
           type="text"
           placeholder="Doe"
+          [(ngModel)]="userForm.lastName"
+          required
+        />
+      </div>
+    </div>
+    <div class="mb-6 -mx-3 md:flex">
+      <div class="px-3 md:w-full">
+        <label
+          class="block mb-2 text-xs font-bold tracking-wide uppercase text-grey-darker"
+          for="grid-email"
+        >
+          Email
+        </label>
+        <input
+          class="block w-full px-4 py-3 mb-3 transition-all duration-300 border rounded outline-none appearance-none ring ring-transparent focus:ring-offset-1 focus:ring-blue-300 : bg-grey-lighter text-grey-darker border-grey-lighter"
+          id="grid-email"
+          type="email"
+          name="password"
+          placeholder="example@gmail.com"
+          required
+          minlength="4"
+          [(ngModel)]="userForm.email"
+          autocomplete="true"
         />
       </div>
     </div>
@@ -42,10 +73,15 @@
           Password
         </label>
         <input
-          class="block w-full px-4 py-3 mb-3 border rounded appearance-none bg-grey-lighter text-grey-darker border-grey-lighter"
+          class="block w-full px-4 py-3 mb-3 transition-all duration-300 border rounded outline-none appearance-none ring ring-transparent focus:ring-offset-1 focus:ring-blue-300 : bg-grey-lighter text-grey-darker border-grey-lighter"
           id="grid-password"
           type="password"
+          name="password"
           placeholder="******************"
+          required
+          minlength="4"
+          autocomplete="true"
+          [(ngModel)]="userForm.password"
         />
         <p class="text-xs italic text-grey-dark">
           Make it as long and as crazy as you'd like
@@ -61,10 +97,13 @@
           City
         </label>
         <input
-          class="block w-full px-4 py-3 border rounded appearance-none bg-grey-lighter text-grey-darker border-grey-lighter"
+          class="block w-full px-4 py-3 transition-all duration-300 border rounded outline-none appearance-none ring ring-transparent focus:ring-offset-1 focus:ring-blue-300 : bg-grey-lighter text-grey-darker border-grey-lighter"
           id="grid-city"
           type="text"
-          placeholder="Albuquerque"
+          name="city"
+          placeholder="Goma"
+          [(ngModel)]="userForm.city"
+          required
         />
       </div>
       <div class="px-3 md:w-1/2">
@@ -78,10 +117,14 @@
           <select
             class="block w-full px-4 py-3 pr-8 ml-2 border rounded appearance-none bg-grey-lighter border-grey-lighter text-grey-darker"
             id="grid-state"
+            name="province"
+            [(ngModel)]="userForm.province"
+            required
           >
-            <option>Nord-kivu</option>
-            <option>Sud-kivu</option>
-            <option>Maniema</option>
+            <option value="" selected="true">Select your province</option>
+            <option value="nord-kivu">Nord-kivu</option>
+            <option value="sud-kivu">Sud-kivu</option>
+            <option value="maniema">Maniema</option>
           </select>
           <div
             class="absolute flex items-center px-2 pointer-events-none pin-y pin-r text-grey-darker"
@@ -106,12 +149,22 @@
           Zip Code
         </label>
         <input
-          class="block w-full px-4 py-3 border rounded appearance-none bg-grey-lighter text-grey-darker border-grey-lighter"
+          class="block w-full px-4 py-3 transition-all duration-300 border rounded outline-none appearance-none ring ring-transparent focus:ring-offset-1 focus:ring-blue-300 : bg-grey-lighter text-grey-darker border-grey-lighter"
           id="grid-zip"
           type="text"
+          name="zipCode"
           placeholder="90210"
+          required
+          minlength="5"
+          [(ngModel)]="userForm.zipCode"
         />
       </div>
     </div>
-  </div>
+    <button
+      type="submit"
+      class="px-10 py-2 text-base text-white bg-blue-600 rounded hover:bg-blue-700 ring focus:ring-offset-1 active:ring-blue-300 active:ring-offset-1 max-w-max"
+    >
+      Valider
+    </button>
+  </form>
 </div>
