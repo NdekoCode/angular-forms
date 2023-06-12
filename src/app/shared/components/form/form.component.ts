@@ -11,7 +11,7 @@ export class FormComponent {
   userForm: User = new User();
   saveFormData(form: NgForm) {
     console.dir(form, { depth: 0 });
-    console.log(form.status);
+    console.log(form.status, 'Valeurs', JSON.stringify(form.value));
     console.log(this.userForm);
   }
 }
