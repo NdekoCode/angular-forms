@@ -14,3 +14,11 @@
     }
   }
 }
+
+.invalid {
+  @apply bg-red-50 border-red-500 text-red-900 placeholder-red-700;
+
+  &.invalid:focus {
+    @apply ring-red-500 border-red-500;
+  }
+}

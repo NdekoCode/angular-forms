@@ -23,6 +23,9 @@
           placeholder="Jane"
           [(ngModel)]="userForm.firstName"
           #firstNameVar="ngModel"
+          [ngClass]="{
+            invalid: firstNameVar.touched && !firstNameVar.valid
+          }"
           required
         />
         <p class="text-xs italic text-red">Please fill out this field.</p>
@@ -42,6 +45,7 @@
           placeholder="Doe"
           [(ngModel)]="userForm.lastName"
           #lastNameVar="ngModel"
+          [ngClass]="{ invalid: lastNameVar.touched && lastNameVar.invalid }"
           required
         />
       </div>
@@ -64,6 +68,7 @@
           minlength="4"
           [(ngModel)]="userForm.email"
           #emailVar="ngModel"
+          [ngClass]="{ invalid: emailVar.touched && emailVar.invalid }"
           autocomplete="true"
         />
       </div>
@@ -87,6 +92,7 @@
           autocomplete="true"
           [(ngModel)]="userForm.password"
           #passwordVar="ngModel"
+          [ngClass]="{ invalid: passwordVar.touched && passwordVar.invalid }"
         />
         <p class="text-xs italic text-grey-dark">
           Make it as long and as crazy as you'd like
@@ -109,6 +115,7 @@
           placeholder="Goma"
           [(ngModel)]="userForm.city"
           #cityVar="ngModel"
+          [ngClass]="{ invalid: cityVar.touched && cityVar.invalid }"
           required
         />
       </div>
@@ -127,6 +134,7 @@
             [(ngModel)]="userForm.province"
             #provinceVar="ngModel"
             required
+            [ngClass]="{ invalid: provinceVar.touched && provinceVar.invalid }"
           >
             <option value="" selected="true">Select your province</option>
             <option value="nord-kivu">Nord-kivu</option>
@@ -165,6 +173,7 @@
           minlength="5"
           [(ngModel)]="userForm.zipCode"
           #zipCodeVar="ngModel"
+          [ngClass]="{ invalid: zipCodeVar.touched && zipCodeVar.invalid }"
         />
       </div>
     </div>
