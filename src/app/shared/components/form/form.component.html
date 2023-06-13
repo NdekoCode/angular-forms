@@ -22,6 +22,7 @@
           name="firstName"
           placeholder="Jane"
           [(ngModel)]="userForm.firstName"
+          #firstNameVar="ngModel"
           required
         />
         <p class="text-xs italic text-red">Please fill out this field.</p>
@@ -40,6 +41,7 @@
           type="text"
           placeholder="Doe"
           [(ngModel)]="userForm.lastName"
+          #lastNameVar="ngModel"
           required
         />
       </div>
@@ -61,6 +63,7 @@
           required
           minlength="4"
           [(ngModel)]="userForm.email"
+          #emailVar="ngModel"
           autocomplete="true"
         />
       </div>
@@ -83,6 +86,7 @@
           minlength="4"
           autocomplete="true"
           [(ngModel)]="userForm.password"
+          #passwordVar="ngModel"
         />
         <p class="text-xs italic text-grey-dark">
           Make it as long and as crazy as you'd like
@@ -104,6 +108,7 @@
           name="city"
           placeholder="Goma"
           [(ngModel)]="userForm.city"
+          #cityVar="ngModel"
           required
         />
       </div>
@@ -120,6 +125,7 @@
             id="grid-state"
             name="province"
             [(ngModel)]="userForm.province"
+            #provinceVar="ngModel"
             required
           >
             <option value="" selected="true">Select your province</option>
@@ -158,12 +164,14 @@
           required
           minlength="5"
           [(ngModel)]="userForm.zipCode"
+          #zipCodeVar="ngModel"
         />
       </div>
     </div>
     <button
       type="submit"
-      class="px-10 py-2 text-base text-white bg-blue-600 rounded hover:bg-blue-700 ring focus:ring-offset-1 active:ring-blue-300 active:ring-offset-1 max-w-max"
+      class="px-10 py-2 text-base text-white bg-blue-600 rounded hover:bg-blue-700 ring focus:ring-offset-1 active:ring-blue-300 active:ring-offset-1 max-w-max disabled:opacity-70 disabled:cursor-not-allowed"
+      [disabled]="formData.invalid"
     >
       Valider
     </button>
