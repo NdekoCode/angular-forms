@@ -27,13 +27,22 @@
             invalid: firstNameVar.touched && !firstNameVar.valid
           }"
           required
+          minlength="3"
         />
-        <p
-          *ngIf="firstNameVar.touched && !firstNameVar.valid"
+        <div
+          *ngIf="
+            firstNameVar.errors && firstNameVar.touched && firstNameVar.invalid
+          "
           class="mt-2 text-sm text-red-600 dark:text-red-500"
         >
-          <span class="font-medium">Oops!</span> Firstname is required
-        </p>
+          <p *ngIf="firstNameVar.errors['required']">
+            <span class="font-medium">Oops!</span> Firstname is required
+          </p>
+          <p *ngIf="firstNameVar.errors['minlength']">
+            <span class="font-medium">Oops!</span> The first name must be at
+            least 4 characters long.
+          </p>
+        </div>
       </div>
       <div class="px-3 md:w-1/2">
         <label
@@ -51,14 +60,24 @@
           [(ngModel)]="userForm.lastName"
           #lastNameVar="ngModel"
           [ngClass]="{ invalid: lastNameVar.touched && lastNameVar.invalid }"
+          minlength="2"
           required
         />
-        <p
-          *ngIf="lastNameVar.touched && lastNameVar.invalid"
+
+        <div
+          *ngIf="
+            lastNameVar.errors && lastNameVar.touched && lastNameVar.invalid
+          "
           class="mt-2 text-sm text-red-600 dark:text-red-500"
         >
-          <span class="font-medium">Oops!</span> lastName is required
-        </p>
+          <p *ngIf="lastNameVar.errors['required']">
+            <span class="font-medium">Oops!</span> lastName is required
+          </p>
+          <p *ngIf="lastNameVar.errors['minlength']">
+            <span class="font-medium">Oops!</span> lastName must be at least 2
+            characters long
+          </p>
+        </div>
       </div>
     </div>
     <div class="mb-6 -mx-3 md:flex">
@@ -73,21 +92,27 @@
           class="block w-full px-4 py-3 mb-3 transition-all duration-300 border rounded outline-none appearance-none ring ring-transparent focus:ring-offset-1 focus:ring-blue-300 : bg-grey-lighter text-grey-darker border-grey-lighter"
           id="grid-email"
           type="email"
-          name="password"
+          name="email"
           placeholder="example@gmail.com"
           required
-          minlength="4"
+          minlength="5"
           [(ngModel)]="userForm.email"
           #emailVar="ngModel"
           [ngClass]="{ invalid: emailVar.touched && emailVar.invalid }"
           autocomplete="true"
+          [email]="true"
         />
-        <p
-          *ngIf="emailVar.touched && emailVar.invalid"
+        <div
+          *ngIf="emailVar.errors && emailVar.invalid && emailVar.touched"
           class="mt-2 text-sm text-red-600 dark:text-red-500"
         >
-          <span class="font-medium">Oops!</span> Email is required
-        </p>
+          <p *ngIf="emailVar.errors['required']">
+            <span class="font-medium">Oops!</span> Email is required
+          </p>
+          <p *ngIf="emailVar.errors['email']">
+            <span class="font-medium">Oops!</span> Email is invalid
+          </p>
+        </div>
       </div>
     </div>
     <div class="mb-6 -mx-3 md:flex">
@@ -111,12 +136,21 @@
           #passwordVar="ngModel"
           [ngClass]="{ invalid: passwordVar.touched && passwordVar.invalid }"
         />
-        <p
-          *ngIf="passwordVar.touched && passwordVar.invalid"
+
+        <div
+          *ngIf="
+            passwordVar.errors && passwordVar.invalid && passwordVar.touched
+          "
           class="mt-2 text-sm text-red-600 dark:text-red-500"
         >
-          <span class="font-medium">Oops!</span> Password is required
-        </p>
+          <p *ngIf="passwordVar.errors['required']">
+            <span class="font-medium">Oops!</span> Password is required
+          </p>
+          <p *ngIf="passwordVar.errors['minlength']">
+            <span class="font-medium">Oops!</span> password must be at least 4
+            characters long
+          </p>
+        </div>
       </div>
     </div>
     <div class="mb-2 -mx-3 md:flex">
@@ -138,12 +172,14 @@
           [ngClass]="{ invalid: cityVar.touched && cityVar.invalid }"
           required
         />
-        <p
-          *ngIf="cityVar.touched && cityVar.invalid"
+        <div
+          *ngIf="cityVar.errors && cityVar.invalid && cityVar.touched"
           class="mt-2 text-sm text-red-600 dark:text-red-500"
         >
-          <span class="font-medium">Oops!</span> City is required
-        </p>
+          <p *ngIf="cityVar.errors['required']">
+            <span class="font-medium">Oops!</span> City is required
+          </p>
+        </div>
       </div>
       <div class="px-3 md:w-1/2">
         <label
@@ -180,10 +216,15 @@
               />
             </svg>
           </div>
-          <p
-            *ngIf="provinceVar.touched && provinceVar.invalid"
-            class="mt-2 text-sm text-red-600 dark:text-red-500"
-          >
+        </div>
+
+        <div
+          *ngIf="
+            provinceVar.errors && provinceVar.invalid && provinceVar.touched
+          "
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+        >
+          <p *ngIf="provinceVar.errors['required']">
             <span class="font-medium">Oops!</span> Province is required
           </p>
         </div>
@@ -207,12 +248,15 @@
           #zipCodeVar="ngModel"
           [ngClass]="{ invalid: zipCodeVar.touched && zipCodeVar.invalid }"
         />
-        <p
-          *ngIf="zipCodeVar.touched && zipCodeVar.invalid"
+
+        <div
+          *ngIf="zipCodeVar.errors && zipCodeVar.invalid && zipCodeVar.touched"
           class="mt-2 text-sm text-red-600 dark:text-red-500"
         >
-          <span class="font-medium">Oops!</span> ZipCode is required
-        </p>
+          <p *ngIf="zipCodeVar.errors['required']">
+            <span class="font-medium">Oops!</span> zipCode is required
+          </p>
+        </div>
       </div>
     </div>
     <button
