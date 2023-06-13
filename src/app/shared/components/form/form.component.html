@@ -28,7 +28,12 @@
           }"
           required
         />
-        <p class="text-xs italic text-red">Please fill out this field.</p>
+        <p
+          *ngIf="firstNameVar.touched && !firstNameVar.valid"
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+        >
+          <span class="font-medium">Oops!</span> Firstname is required
+        </p>
       </div>
       <div class="px-3 md:w-1/2">
         <label
@@ -48,6 +53,12 @@
           [ngClass]="{ invalid: lastNameVar.touched && lastNameVar.invalid }"
           required
         />
+        <p
+          *ngIf="lastNameVar.touched && lastNameVar.invalid"
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+        >
+          <span class="font-medium">Oops!</span> lastName is required
+        </p>
       </div>
     </div>
     <div class="mb-6 -mx-3 md:flex">
@@ -71,6 +82,12 @@
           [ngClass]="{ invalid: emailVar.touched && emailVar.invalid }"
           autocomplete="true"
         />
+        <p
+          *ngIf="emailVar.touched && emailVar.invalid"
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+        >
+          <span class="font-medium">Oops!</span> Email is required
+        </p>
       </div>
     </div>
     <div class="mb-6 -mx-3 md:flex">
@@ -94,8 +111,11 @@
           #passwordVar="ngModel"
           [ngClass]="{ invalid: passwordVar.touched && passwordVar.invalid }"
         />
-        <p class="text-xs italic text-grey-dark">
-          Make it as long and as crazy as you'd like
+        <p
+          *ngIf="passwordVar.touched && passwordVar.invalid"
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+        >
+          <span class="font-medium">Oops!</span> Password is required
         </p>
       </div>
     </div>
@@ -118,6 +138,12 @@
           [ngClass]="{ invalid: cityVar.touched && cityVar.invalid }"
           required
         />
+        <p
+          *ngIf="cityVar.touched && cityVar.invalid"
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+        >
+          <span class="font-medium">Oops!</span> City is required
+        </p>
       </div>
       <div class="px-3 md:w-1/2">
         <label
@@ -154,6 +180,12 @@
               />
             </svg>
           </div>
+          <p
+            *ngIf="provinceVar.touched && provinceVar.invalid"
+            class="mt-2 text-sm text-red-600 dark:text-red-500"
+          >
+            <span class="font-medium">Oops!</span> Province is required
+          </p>
         </div>
       </div>
       <div class="px-3 md:w-1/2">
@@ -175,6 +207,12 @@
           #zipCodeVar="ngModel"
           [ngClass]="{ invalid: zipCodeVar.touched && zipCodeVar.invalid }"
         />
+        <p
+          *ngIf="zipCodeVar.touched && zipCodeVar.invalid"
+          class="mt-2 text-sm text-red-600 dark:text-red-500"
+        >
+          <span class="font-medium">Oops!</span> ZipCode is required
+        </p>
       </div>
     </div>
     <button
