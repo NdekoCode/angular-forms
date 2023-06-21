@@ -6,4 +6,12 @@ export class User {
   public city: string = '';
   public province: string = '';
   public zipCode: string | number = '';
+  public sendCatalog: boolean = false;
+  public address: {
+    address1: string;
+    address2: string;
+  } = {
+    address1: '',
+    address2: '',
+  };
 }

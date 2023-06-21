@@ -259,6 +259,173 @@
         </div>
       </div>
     </div>
+    <div class="flex items-center mb-4">
+      <input
+        id="checkbox-1"
+        aria-describedby="checkbox-1"
+        type="checkbox"
+        name="sendCatalog"
+        [(ngModel)]="userForm.sendCatalog"
+        [checked]="userForm.sendCatalog"
+        #userFormVar="ngModel"
+        class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
+      />
+      <label for="checkbox-1" class="ml-3 text-sm font-medium text-gray-900"
+        >Oui je souhaite recevoir de la publicité</label
+      >
+    </div>
+    <div *ngIf="userForm.sendCatalog">
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-full px-3 sm:w-1/2">
+          <div class="mb-5">
+            <label
+              for="address1"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Address 1
+            </label>
+            <input
+              type="text"
+              name="address1"
+              id="address1"
+              [(ngModel)]="userForm.address.address1"
+              #address1Var="ngModel"
+              placeholder="First Name"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+        </div>
+        <div class="w-full px-3 sm:w-1/2">
+          <div class="mb-5">
+            <label
+              for="address2"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Adresse 2
+            </label>
+            <input
+              type="text"
+              name="address2"
+              id="address2"
+              placeholder="Address 2"
+              [(ngModel)]="userForm.address.address2"
+              #address2Var="ngModel"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="mb-2 -mx-3 md:flex">
+        <div class="px-3 mb-6 md:w-1/2 md:mb-0">
+          <label
+            class="block mb-2 text-xs font-bold tracking-wide uppercase text-grey-darker"
+            for="grid-city"
+          >
+            City
+          </label>
+          <input
+            class="block w-full px-4 py-3 transition-all duration-300 border rounded outline-none appearance-none ring ring-transparent focus:ring-offset-1 focus:ring-blue-300 : bg-grey-lighter text-grey-darker border-grey-lighter"
+            id="grid-city"
+            type="text"
+            name="city"
+            placeholder="Goma"
+            [(ngModel)]="userForm.city"
+            #cityVar="ngModel"
+            [ngClass]="{ invalid: cityVar.touched && cityVar.invalid }"
+            required
+          />
+          <div
+            *ngIf="cityVar.errors && cityVar.invalid && cityVar.touched"
+            class="mt-2 text-sm text-red-600 dark:text-red-500"
+          >
+            <p *ngIf="cityVar.errors['required']">
+              <span class="font-medium">Oops!</span> City is required
+            </p>
+          </div>
+        </div>
+        <div class="px-3 md:w-1/2">
+          <label
+            class="block mb-2 text-xs font-bold tracking-wide uppercase text-grey-darker"
+            for="grid-state"
+          >
+            Province
+          </label>
+          <div class="relative flex items-center">
+            <select
+              class="block w-full px-4 py-3 pr-8 ml-2 border rounded appearance-none bg-grey-lighter border-grey-lighter text-grey-darker"
+              id="grid-state"
+              name="province"
+              [(ngModel)]="userForm.province"
+              #provinceVar="ngModel"
+              required
+              [ngClass]="{
+                invalid: provinceVar.touched && provinceVar.invalid
+              }"
+            >
+              <option value="" selected="true">Select your province</option>
+              <option value="nord-kivu">Nord-kivu</option>
+              <option value="sud-kivu">Sud-kivu</option>
+              <option value="maniema">Maniema</option>
+            </select>
+            <div
+              class="absolute flex items-center px-2 pointer-events-none pin-y pin-r text-grey-darker"
+            >
+              <svg
+                class="w-4 h-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div
+            *ngIf="
+              provinceVar.errors && provinceVar.invalid && provinceVar.touched
+            "
+            class="mt-2 text-sm text-red-600 dark:text-red-500"
+          >
+            <p *ngIf="provinceVar.errors['required']">
+              <span class="font-medium">Oops!</span> Province is required
+            </p>
+          </div>
+        </div>
+        <div class="px-3 md:w-1/2">
+          <label
+            class="block mb-2 text-xs font-bold tracking-wide uppercase text-grey-darker"
+            for="grid-zip"
+          >
+            Zip Code
+          </label>
+          <input
+            class="block w-full px-4 py-3 transition-all duration-300 border rounded outline-none appearance-none ring ring-transparent focus:ring-offset-1 focus:ring-blue-300 : bg-grey-lighter text-grey-darker border-grey-lighter"
+            id="grid-zip"
+            type="text"
+            name="zipCode"
+            placeholder="90210"
+            required
+            minlength="5"
+            [(ngModel)]="userForm.zipCode"
+            #zipCodeVar="ngModel"
+            [ngClass]="{ invalid: zipCodeVar.touched && zipCodeVar.invalid }"
+          />
+
+          <div
+            *ngIf="
+              zipCodeVar.errors && zipCodeVar.invalid && zipCodeVar.touched
+            "
+            class="mt-2 text-sm text-red-600 dark:text-red-500"
+          >
+            <p *ngIf="zipCodeVar.errors['required']">
+              <span class="font-medium">Oops!</span> zipCode is required
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     <button
       type="submit"
       class="px-10 py-2 text-base text-white bg-blue-600 rounded hover:bg-blue-700 ring focus:ring-offset-1 active:ring-blue-300 active:ring-offset-1 max-w-max disabled:opacity-70 disabled:cursor-not-allowed"
@@ -267,4 +434,12 @@
       Valider
     </button>
   </form>
+  <div class="my-1">
+    <p class="mb-1">Dirty: {{ formData.dirty }}</p>
+    <p class="mb-1">Pristine: {{ formData.pristine }}</p>
+    <p class="mb-1">Invalid: {{ formData.invalid }}</p>
+    <p class="mb-1">Valid: {{ formData.valid }}</p>
+    <p class="mb-1">Form: {{ formData.value | json }}</p>
+  </div>
+  <div class="divide-gray-300 divide"></div>
 </div>
