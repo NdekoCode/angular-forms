@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -7,26 +7,21 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  firstName = new FormControl();
-  lastName = new FormControl();
-  email = new FormControl();
-  password = new FormControl();
-  city: FormControl<string> = new FormControl();
-  province: FormControl<string | null> = new FormControl('');
-  zipCode: FormControl<string | number> = new FormControl();
-  sendCatalog: FormControl<boolean | null> = new FormControl(false);
-
   public registerForm!: FormGroup;
+  constructor(private _formBuilder: FormBuilder) {}
   ngOnInit(): void {
-    this.registerForm = new FormGroup({
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email,
-      password: this.password,
-      city: this.city,
-      province: this.province,
-      zipCode: this.zipCode,
-      sendCatalog: this.sendCatalog,
+    this.registerForm = this._formBuilder.group({
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
+      email: [
+        '',
+        [Validators.required, Validators.email, Validators.maxLength(255)],
+      ],
+      password: ['', Validators.required, Validators.minLength(4)],
+      city: ['', [Validators.required, Validators.minLength(2)]],
+      province: ['', [Validators.required, Validators.minLength(2)]],
+      zipCode: ['', [Validators.required, Validators.minLength(2)]],
+      sendCatalog: { value: false },
     });
   }
   saveregisterForm() {
