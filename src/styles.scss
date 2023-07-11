@@ -22,3 +22,7 @@
     @apply ring-red-500 border-red-500;
   }
 }
+
+.text-invalid {
+  @apply mt-2 text-xs text-red-600;
+}

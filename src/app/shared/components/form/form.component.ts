@@ -18,11 +18,29 @@ export class FormComponent implements OnInit {
         [Validators.required, Validators.email, Validators.maxLength(255)],
       ],
       password: ['', Validators.required, Validators.minLength(4)],
+      rating: 0,
+      phoneNumber: '',
+      notification: 'email',
       city: ['', [Validators.required, Validators.minLength(2)]],
       province: ['', [Validators.required, Validators.minLength(2)]],
-      zipCode: ['', [Validators.required, Validators.minLength(2)]],
-      sendCatalog: { value: false },
+      zipCode: [
+        '',
+        [Validators.required, Validators.minLength(6), Validators.maxLength(6)],
+      ],
+      sendCatalog: { value: false, disabled: false },
     });
+  }
+  setNotificationSetting(method: string) {
+    const phoneControl = this.registerForm.get('phoneNumber');
+    if (method === 'phone') {
+      phoneControl?.setValidators([
+        Validators.required,
+        Validators.minLength(10),
+      ]);
+    } else {
+      phoneControl?.clearValidators();
+    }
+    phoneControl?.updateValueAndValidity();
   }
   saveregisterForm() {
     console.dir(this.registerForm, { depth: 0 });
@@ -39,7 +57,7 @@ export class FormComponent implements OnInit {
       lastName: 'Bulakali',
       email: 'arickbulakali@gmail.com',
       password: '123',
-      sendCatalog: true,
+      sendCatalog: false,
       province: '',
       zipCode: '',
       city: '',
