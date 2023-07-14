@@ -40,7 +40,7 @@ export class FormComponent implements OnInit {
     } else {
       phoneControl?.clearValidators();
     }
-    phoneControl?.updateValueAndValidity();
+    this.registerForm.get('phoneNumber')?.updateValueAndValidity();
   }
   saveregisterForm() {
     console.dir(this.registerForm, { depth: 0 });
